@@ -1,0 +1,33 @@
+.carousel {
+  @include container;
+  margin-top: 20px;
+  white-space: nowrap;
+  overflow: auto;
+  display: flex;
+
+  &__title {
+    text-align: center;
+    font-size: 30px;
+  }
+
+
+  &__product {
+    padding-left: 20px;
+    text-align: center;
+
+    &-photo {
+      width: 150px;
+      height: auto;
+    }
+
+    &-brand {
+      font-weight: bold;
+    }
+
+    &-name {
+
+    }
+
+  }
+
+}

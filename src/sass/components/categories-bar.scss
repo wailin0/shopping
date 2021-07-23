@@ -1,0 +1,44 @@
+.categories-bar {
+  background: black;
+
+  @include respond(mobile) {
+    background: none;
+  }
+
+  &__desktop {
+    display: flex;
+    color: white;
+    padding: 15px;
+    align-items: center;
+    justify-content: space-between;
+
+    @include container;
+
+    @include respond(mobile) {
+      display: none;
+    }
+
+  }
+
+
+  &__mobile {
+    display: none;
+    white-space: nowrap;
+    overflow: auto;
+
+    &-button {
+      border-radius: 5px;
+      cursor: pointer;
+
+      margin-left: 10px;
+      padding: 10px;
+      background: white;
+    }
+
+    @include respond(mobile) {
+      display: block;
+    }
+  }
+
+
+}

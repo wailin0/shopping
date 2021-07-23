@@ -1,0 +1,51 @@
+.footer {
+  margin-top: 50px;
+  color: white;
+  background: black;
+
+  &__content {
+    @include container;
+
+  }
+
+  &__information {
+    @include flex;
+    padding: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    border-bottom: 1px solid gray;
+    margin-bottom: 30px;
+
+    & > div {
+      @include flex;
+
+      & > p {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__copyright {
+    padding-bottom: 50px;
+    @include flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+
+    &-info {
+      @include flex;
+      flex-wrap: wrap;
+
+      & > p {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__social {
+    & > * {
+      margin-left: 20px;
+    }
+  }
+
+}
