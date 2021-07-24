@@ -1,4 +1,4 @@
-import Carousel from "../components/Carousel";
+import ProductCarousel from "../components/ProductCarousel";
 import {products} from "../dummy";
 import Ads from "../components/Ads";
 
@@ -9,12 +9,12 @@ const Home = () => {
                 src='https://www.sephora.com/contentimages/homepage/072021/Homepage/DesktopMweb/2021-07-22-hp-beauty-offer-clean+planetpositive-us-ca-d-slice.jpeg?imwidth=1200'
                 className='home__promotion-banner'
             />
-            <Carousel title='Just Dropped' products={products} />
+            <ProductCarousel title='Just Dropped' products={products} />
             <Ads />
 
-            <Carousel title='Selling Fast' products={products} />
-            <Carousel title='Value Sets' products={products} />
-            <Carousel title='Recommended For You' products={products} />
+            <ProductCarousel title='Selling Fast' products={products} />
+            <ProductCarousel title='Value Sets' products={products} />
+            <ProductCarousel title='Recommended For You' products={products} />
         </div>
     )
 }

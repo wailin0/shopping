@@ -1,0 +1,18 @@
+.bottom-tab {
+  position: fixed;
+  bottom: 0;
+  display: none;
+  align-items: center;
+  font-size: 14px;
+  text-align: center;
+  justify-content: space-evenly;
+  background: white;
+  width: 100%;
+  padding: 5px;
+
+
+  @include respond(mobile) {
+    display: flex;
+  }
+
+}

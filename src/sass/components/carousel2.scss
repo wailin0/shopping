@@ -1,0 +1,57 @@
+.carousel2 {
+
+  &__title {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+
+  &__product {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 320px;
+    padding: 20px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+
+    &--photo {
+      width: 100%;
+      height: 150px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    &--brand {
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    &--name {
+      white-space: pre-wrap;
+      overflow-wrap: break-word;
+      display: -webkit-box;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+    }
+
+    &--price {
+      font-weight: bold;
+      font-size: 20px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    &--rating {
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+  }
+
+}
