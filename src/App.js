@@ -8,6 +8,7 @@ import {BrowserRouter, Route, Switch} from "react-router-dom";
 import ProductDetail from "./pages/ProductDetail";
 import BackToTop from "./components/BackToTop";
 import Shop from "./pages/Shop";
+import Router from "./Router";
 
 function App() {
     return (
@@ -17,11 +18,7 @@ function App() {
                 <Announcement/>
                 <AppBar/>
                 <CategoriesBar/>
-                <Switch>
-                    <Route path='/' component={Home} exact />
-                    <Route path='/product/:name' component={ProductDetail} />
-                    <Route path='/shop' component={Shop} />
-                </Switch>
+                <Router />
                 <Footer/>
                 <BottomTab/>
             </BrowserRouter>

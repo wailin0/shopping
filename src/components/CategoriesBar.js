@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 const categories = [
     "New",
     "Brands",
@@ -19,12 +21,16 @@ const CategoriesBar = () => {
         <div className='categories-bar'>
             <div className='categories-bar__desktop'>
                 {categories.map(category =>
-                    <p className='categories-bar__category'>{category}</p>
+                    <Link to={`/shop/${category}`} className='categories-bar__category'>{category}</Link>
                 )}
             </div>
             <div className='categories-bar__mobile'>
                 {categories.map(category =>
-                    <button className='categories-bar__mobile-button'>{category}</button>
+                    <button className='categories-bar__mobile-button'>
+                        <Link to={`/shop/${category}`}>
+                            {category}
+                        </Link>
+                    </button>
                 )}
             </div>
         </div>
