@@ -1,20 +1,25 @@
-import {FaHome, FaTag, FaUserCircle} from "react-icons/fa";
+import {FaHome, FaTag,FaShoppingBag, FaUserCircle} from "react-icons/fa";
+import {NavLink} from "react-router-dom";
 
 const BottomTab = () => {
     return (
         <div className='bottom-tab'>
-            <div>
+            <NavLink to='/'>
                 <FaHome size={17}/>
                 <p>Home</p>
-            </div>
-            <div>
+            </NavLink>
+            <NavLink to='/shop'>
+                <FaShoppingBag size={17}/>
+                <p>Shop</p>
+            </NavLink>
+            <NavLink to='/offer'>
                 <FaTag size={17}/>
                 <p>Offer</p>
-            </div>
-            <div>
+            </NavLink>
+            <NavLink to='/user'>
                 <FaUserCircle size={17}/>
                 <p>User</p>
-            </div>
+            </NavLink>
 
         </div>
     )

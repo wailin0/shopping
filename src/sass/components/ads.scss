@@ -1,0 +1,17 @@
+.ads {
+  display: flex;
+  margin-top: 40px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+
+  &__photo {
+    margin-top: 10px;
+    width: 49%;
+
+
+    @include respond(mobile) {
+      width: 100%;
+    }
+  }
+}
