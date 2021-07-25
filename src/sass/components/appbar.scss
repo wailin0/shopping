@@ -9,19 +9,94 @@
   @include container;
 
   &__logo {
-    width: 100px;
+    width: 150px;
     height: 30px;
 
     @include respond(mobile) {
-      width: 70px;
-      height: 30px;
+      width: 100px;
+      height: 15px;
     }
-
   }
 
-  &__signin {
+  &__user {
     display: flex;
+    cursor: pointer;
     align-items: center;
+
+    &--modal {
+      transition: 2s;
+      position: absolute;
+      z-index: 2000;
+      right: -150px;
+      top: 50px;
+      width: 400px;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+      border-radius: 5px;
+
+      @include respond(mobile) {
+        display: none;
+      }
+
+
+      &-user {
+        @include flex;
+
+        & > div {
+          margin-left: 20px;
+          & > p {
+            font-size: 15px;
+          }
+        }
+      }
+
+
+      &-button {
+        @include flex;
+        margin-top: 20px;
+        justify-content: space-between;
+
+        &-signin {
+          @include button-black;
+          width: 48%;
+        }
+
+        &-register {
+          @include button-white;
+          width: 48%;
+        }
+      }
+
+
+      &-list {
+        margin-top: 20px;
+
+
+        & > a {
+          @include flex;
+          padding: 10px 0;
+
+          &:not(:last-child) {
+            border-bottom: 1px solid lightgray;
+          }
+
+          & > div {
+            margin-left: 20px;
+
+            & > p:first-child {
+              font-size: 18px;
+            }
+
+            & > p:last-child {
+              color: gray;
+              font-size: 15px;
+            }
+          }
+        }
+      }
+    }
+
 
     & > p {
       margin-left: 10px;
@@ -43,6 +118,12 @@
     height: 40px;
     border: none;
     width: 40%;
+    margin: 0 20px;
+
+
+    @include respond(mobile) {
+      width: 100%;
+    }
 
     &-input {
       width: 100%;

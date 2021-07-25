@@ -1,9 +1,16 @@
 import {FaHeart, FaShoppingBasket, FaUserCircle} from 'react-icons/fa'
+import {useState} from "react";
+import UserModal from "./UserModal";
+import SignInModal from "./SignInModal";
 
 const AppBar = () => {
+    const [userModal, setUserModal] = useState(false)
+    const [signInModal, setSignInModal] = useState(false)
+    const [signUpModal, setSignUpModal] = useState(false)
+
     return (
         <div className='appbar'>
-            <img src='https://www.sephora.com/img/ufe/logo.svg'
+            <img src='https://www.deluxbeauti.com/wp-content/uploads/2021/05/weblogo-300x35.png'
                  className='appbar__logo'
             />
             <div className='appbar__search'>
@@ -14,9 +21,20 @@ const AppBar = () => {
                 />
             </div>
 
-            <div className='appbar__signin'>
-                <FaUserCircle size={30}/>
-                <p>Sign In</p>
+            <div style={{position: 'relative'}}>
+                <div className='appbar__user'
+                     onMouseOver={() => setUserModal(true)}
+                >
+                    <FaUserCircle size={30}/>
+                    <p>Sign In</p>
+                </div>
+
+                {userModal &&
+                <div onMouseLeave={() => setUserModal(false)}>
+                    <UserModal setSignInModal={setSignInModal} />
+                </div>
+                }
+
             </div>
 
 
@@ -25,6 +43,8 @@ const AppBar = () => {
                 <FaShoppingBasket size={30} style={{marginLeft: 20}}/>
             </div>
 
+
+            {signInModal && <SignInModal setSignInModal={setSignInModal} />}
         </div>
     )
 }

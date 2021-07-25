@@ -7,6 +7,7 @@ import Slide from "@material-ui/core/Slide";
 import Accordion from "@material-ui/core/Accordion";
 import AccordionSummary from "@material-ui/core/AccordionSummary";
 import AccordionDetails from "@material-ui/core/AccordionDetails";
+import {Link} from "react-router-dom";
 
 const filters = [
     {
@@ -171,7 +172,7 @@ const Shop = () => {
 
                 <div className='shop__product-grid'>
                     {products.map(product =>
-                        <div className='shop__product-grid--item'>
+                        <Link to={`/product/${product.name}`} className='shop__product-grid--item'>
                             <div className='shop__product-grid--item-photo'>
                                 <img src={product.photoURL}
                                      style={{width: '100%', objectFit: 'contain', height: '100%'}}
@@ -181,7 +182,7 @@ const Shop = () => {
                             <p className='shop__product-grid--item-brand'>{product.brand}</p>
                             <p className='shop__product-grid--item-price'>${product.price}</p>
                             <p className='shop__product-grid--item-rating'>XXXXX 14.4K</p>
-                        </div>
+                        </Link>
                     )}
                 </div>
             </div>

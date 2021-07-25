@@ -1,8 +1,11 @@
-
 const Announcement = () => {
     return (
         <div className='announcement'>
-            <p className='announcement__text'>Earn points fast with code YAYPOINT. plus get free shipping with code FREESHIP</p>
+            <p className='announcement__text'>
+                Website under construction please visit our
+                <a style={{color:'blue',margin:'0 5px'}} href='https://facebook.com/deluxbeauti'>facebook page
+                </a>for shopping
+            </p>
         </div>
     )
 }

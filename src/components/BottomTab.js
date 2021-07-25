@@ -1,4 +1,4 @@
-import {FaHome, FaTag,FaShoppingBag, FaUserCircle} from "react-icons/fa";
+import {FaHome, FaShoppingBag, FaTag, FaUserCircle} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
 
 const BottomTab = () => {
@@ -12,6 +12,7 @@ const BottomTab = () => {
                 <FaShoppingBag size={17}/>
                 <p>Shop</p>
             </NavLink>
+
             <NavLink to='/offer'>
                 <FaTag size={17}/>
                 <p>Offer</p>

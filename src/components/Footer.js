@@ -1,4 +1,12 @@
-import {FaFacebook, FaInstagram, FaStore, FaTwitter} from "react-icons/fa";
+import {
+    FaAndroid,
+    FaCreditCard,
+    FaFacebook,
+    FaFacebookMessenger,
+    FaInstagram,
+    FaPhone,
+    FaTwitter
+} from "react-icons/fa";
 
 const Footer = () => {
     return (
@@ -7,25 +15,25 @@ const Footer = () => {
             <div className='footer__content'>
                 <div className='footer__information'>
                     <div>
-                        <FaStore size={30}/>
+                        <FaFacebookMessenger size={30}/>
                         <p>Customer Service Chat</p>
                     </div>
                     <div>
-                        <FaStore size={30}/>
+                        <FaPhone size={30}/>
                         <p>+95 09 48448484</p>
                     </div>
                     <div>
-                        <FaStore size={30}/>
+                        <FaAndroid size={30}/>
                         <p>Get the App</p>
                     </div>
                     <div>
-                        <FaStore size={30}/>
-                        <p>Accepted most credit card</p>
+                        <FaCreditCard size={30}/>
+                        <p>Accept most payment</p>
                     </div>
                 </div>
 
                 <div className='footer__app'>
-                    <p style={{fontSize: 20, marginBottom: 20}}>Download the Shopping App</p>
+                    <p style={{fontSize: 20, marginBottom: 20}}>Download the App</p>
                     <div className='footer__app-download'>
                         <img src='https://www.sephora.com/img/ufe/badge-google-play.svg'
                         />
@@ -37,7 +45,7 @@ const Footer = () => {
 
                 <div className='footer__copyright'>
                     <div>
-                        <p>C 2021 Shopping USA, Inc. All rights reserved.</p>
+                        <p>© 2021 Delux Beauti. All rights reserved.</p>
                         <div className='footer__copyright-info'>
                             <p>Privacy Policy</p>
                             <p>Terms of User</p>
@@ -46,7 +54,7 @@ const Footer = () => {
                     </div>
 
                     <div className='footer__copyright-social'>
-                        <FaFacebook size={30}/>
+                        <a href='https://facebook.com/deluxbeauti'><FaFacebook size={30}/></a>
                         <FaInstagram size={30}/>
                         <FaTwitter size={30}/>
                     </div>
