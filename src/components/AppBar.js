@@ -2,6 +2,7 @@ import {FaHeart, FaShoppingBasket, FaUserCircle} from 'react-icons/fa'
 import {useState} from "react";
 import UserModal from "./UserModal";
 import SignInModal from "./SignInModal";
+import SignUpModal from "./SignUpModal";
 
 const AppBar = () => {
     const [userModal, setUserModal] = useState(false)
@@ -31,7 +32,9 @@ const AppBar = () => {
 
                 {userModal &&
                 <div onMouseLeave={() => setUserModal(false)}>
-                    <UserModal setSignInModal={setSignInModal} />
+                    <UserModal setSignInModal={setSignInModal}
+                               setSignUpModal={setSignUpModal}
+                    />
                 </div>
                 }
 
@@ -44,7 +47,8 @@ const AppBar = () => {
             </div>
 
 
-            {signInModal && <SignInModal setSignInModal={setSignInModal} />}
+            {signInModal && <SignInModal setSignInModal={setSignInModal} setSignUpModal={setSignUpModal} />}
+            {signUpModal && <SignUpModal setSignInModal={setSignInModal} setSignUpModal={setSignUpModal} />}
         </div>
     )
 }

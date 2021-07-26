@@ -1,7 +1,7 @@
 import {FaHeartbeat, FaHistory, FaJediOrder, FaUserCircle, FaUserTag} from "react-icons/fa";
 import {Link} from "react-router-dom";
 
-const UserModal = ({setSignInModal}) => {
+const UserModal = ({setSignInModal, setSignUpModal}) => {
 
     return (
         <>
@@ -21,7 +21,10 @@ const UserModal = ({setSignInModal}) => {
                     >
                         Sign In
                     </button>
-                    <button className='appbar__user--modal-button-register'>
+                    <button
+                        className='appbar__user--modal-button-register'
+                        onClick={() => setSignUpModal(true)}
+                    >
                         Create account
                     </button>
                 </div>

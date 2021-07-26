@@ -1,6 +1,6 @@
 import {FaTimes} from "react-icons/fa";
 
-const SignInModal = ({setSignInModal}) => {
+const SignInModal = ({setSignInModal, setSignUpModal}) => {
     return (
         <div className='signin-modal'>
             <div className='signin-modal__title'>
@@ -34,7 +34,12 @@ const SignInModal = ({setSignInModal}) => {
                 </button>
 
                 <h3>New to Delux Beauti?</h3>
-                <button className='signin-modal__register'>
+                <button className='signin-modal__register'
+                        onClick={() => {
+                            setSignInModal(false)
+                            setSignUpModal(true)
+                        }}
+                >
                     Create Account
                 </button>
             </div>
