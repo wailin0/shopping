@@ -1,7 +1,11 @@
 import {FaHeartbeat, FaHistory, FaJediOrder, FaUserCircle, FaUserTag} from "react-icons/fa";
 import {Link} from "react-router-dom";
+import {useContext} from "react";
+import {Context} from "../Context";
 
-const UserModal = ({setSignInModal, setSignUpModal}) => {
+const UserModal = () => {
+
+    const {setSignInModal, setSignUpModal} = useContext(Context)
 
     return (
         <>

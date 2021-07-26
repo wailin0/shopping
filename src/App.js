@@ -6,19 +6,29 @@ import BottomTab from "./components/BottomTab";
 import {BrowserRouter} from "react-router-dom";
 import BackToTop from "./components/BackToTop";
 import Router from "./Router";
+import {useState} from "react";
+import {Context} from "./Context";
 
 function App() {
+    const [userModal, setUserModal] = useState(false)
+    const [signInModal, setSignInModal] = useState(false)
+    const [signUpModal, setSignUpModal] = useState(false)
+
+
     return (
         <div className="container">
-            <BrowserRouter>
-                <BackToTop />
-                <Announcement/>
-                <AppBar/>
-                <CategoriesBar/>
-                <Router />
-                <Footer/>
-                <BottomTab/>
-            </BrowserRouter>
+            <Context.Provider
+                value={{userModal, setUserModal, signInModal, setSignInModal, signUpModal, setSignUpModal}}>
+                <BrowserRouter>
+                    <BackToTop/>
+                    <Announcement/>
+                    <AppBar/>
+                    <CategoriesBar/>
+                    <Router/>
+                    <Footer/>
+                    <BottomTab/>
+                </BrowserRouter>
+            </Context.Provider>
         </div>
     );
 }

@@ -1,6 +1,11 @@
 import {FaTimes} from "react-icons/fa";
+import {useContext} from "react";
+import {Context} from "../Context";
 
-const SignInModal = ({setSignInModal, setSignUpModal}) => {
+const SignInModal = () => {
+
+    const {setSignInModal, setSignUpModal} = useContext(Context)
+
     return (
         <div className='signin-modal'>
             <div className='signin-modal__title'>
