@@ -1,7 +1,12 @@
 import {FaHome, FaShoppingBag, FaTag, FaUserCircle} from "react-icons/fa";
 import {NavLink} from "react-router-dom";
+import {useContext} from "react";
+import {Context} from "../Context";
 
 const BottomTab = () => {
+
+    const {userModal, setUserModal} = useContext(Context)
+
     return (
         <div className='bottom-tab'>
             <NavLink to='/'>
@@ -17,10 +22,10 @@ const BottomTab = () => {
                 <FaTag size={17}/>
                 <p>Offer</p>
             </NavLink>
-            <NavLink to='/user'>
+            <div onClick={() => setUserModal(!userModal)}>
                 <FaUserCircle size={17}/>
                 <p>User</p>
-            </NavLink>
+            </div>
 
         </div>
     )

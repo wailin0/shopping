@@ -13,12 +13,21 @@ function App() {
     const [userModal, setUserModal] = useState(false)
     const [signInModal, setSignInModal] = useState(false)
     const [signUpModal, setSignUpModal] = useState(false)
-
+    const [basketModal, setBasketModal] = useState(false)
 
     return (
         <div className="container">
             <Context.Provider
-                value={{userModal, setUserModal, signInModal, setSignInModal, signUpModal, setSignUpModal}}>
+                value={{
+                    userModal,
+                    setUserModal,
+                    signInModal,
+                    setSignInModal,
+                    signUpModal,
+                    setSignUpModal,
+                    basketModal,
+                    setBasketModal
+                }}>
                 <BrowserRouter>
                     <BackToTop/>
                     <Announcement/>

@@ -1,0 +1,82 @@
+.basket-modal {
+  transition: .2s;
+  position: absolute;
+  z-index: 2000;
+  top: 50px;
+  right: -150px;
+  width: 400px;
+  background: white;
+  padding: 20px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+
+  @include respond(mobile) {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  &__title {
+    @include flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+
+  &__product {
+    display: flex;
+    font-size: 15px;
+    padding: 10px 0;
+    margin: 10px 0;
+    border-top: 1px solid lightgray;
+    justify-content: space-between;
+
+
+    &-photo {
+      width: 50px;
+      height: 50px;
+      margin-right: 10px;
+    }
+
+    &-name {
+
+    }
+
+    &-brand {
+      font-weight: bold;
+    }
+
+    &-price {
+      margin-left: 10px;
+      font-weight: bold;
+    }
+  }
+
+  &__button {
+    @include button-black;
+    width: 100%;
+    font-size: 15px;
+    margin-bottom: 20px;
+    background: red;
+  }
+
+  &__flex {
+    @include flex;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid lightgray;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+    }
+
+    & > p {
+      margin-left: 10px;
+      font-size: 14px;
+    }
+
+  }
+
+}

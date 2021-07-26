@@ -1,6 +1,6 @@
 import {FaTimes} from "react-icons/fa";
 import {useContext} from "react";
-import {Context} from "../Context";
+import {Context} from "../../Context";
 
 const SignUpModal = () => {
 
