@@ -4,11 +4,14 @@ import UserModal from "./modals/UserModal";
 import SignInModal from "./modals/SignInModal";
 import SignUpModal from "./modals/SignUpModal";
 import {Context} from "../Context";
+import {useHistory} from 'react-router-dom'
 import BasketModal from "./modals/BasketModal";
 
 const AppBar = () => {
 
     const {userModal, basketModal, setBasketModal, setUserModal, signInModal, signUpModal} = useContext(Context)
+
+    const history = useHistory()
 
     return (
         <div className='appbar'>
@@ -34,25 +37,18 @@ const AppBar = () => {
                 {userModal && <UserModal/>}
             </div>
 
-
-            <div className='appbar__button'>
+            <div className='appbar__loved'>
                 <FaHeart size={30}/>
+            </div>
+
+            <div className='appbar__basket'
+                 onClick={() => window.innerWidth<=1288 ? history.push('/basket') : setBasketModal(!basketModal)}
+            >
                 <div style={{marginLeft: 20, cursor: 'pointer'}}>
                     <FaShoppingBasket
                         size={30}
-                        onClick={() => setBasketModal(!basketModal)}
                     />
-                    <p style={{
-                        background: 'red',
-                        borderRadius: '50%',
-                        padding: '0 8px',
-                        color: 'white',
-                        fontSize: 15,
-                        fontWeight: 'bold',
-                        bottom: -5,
-                        right: -10,
-                        position: 'absolute'
-                    }}>3</p>
+                    <p className='appbar__basket--badge'>3</p>
                     {basketModal && <BasketModal/>}
                 </div>
             </div>

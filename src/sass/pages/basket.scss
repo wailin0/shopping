@@ -1,0 +1,52 @@
+.basket {
+  @include container;
+  margin-top: 30px;
+
+  &__orders {
+    background: rgb(246, 246, 248);
+    padding: 20px;
+
+    &--product {
+      display: flex;
+      justify-content: space-between;
+
+      &:not(:last-child){
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 20px;
+        margin-bottom: 20px;
+      }
+
+
+      &-photo{
+        margin-right: 10px;
+        height: auto;
+        width: 150px;
+        object-fit: contain;
+      }
+
+      &-name {
+
+      }
+
+      &-brand {
+        font-weight: bold;
+      }
+
+      &-price {
+
+      }
+
+      &-item-number {
+
+      }
+
+      &-size {
+
+      }
+
+
+    }
+
+  }
+
+}

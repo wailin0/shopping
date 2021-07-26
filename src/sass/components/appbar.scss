@@ -32,11 +32,26 @@
     }
   }
 
+  &__loved {
+    margin-left: auto;
+  }
 
-  &__button {
+  &__basket {
     display: flex;
     position: relative;
     align-items: center;
+
+    &--badge {
+      background: red;
+      border-radius: 50%;
+      padding: 2px 8px;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      bottom: -5px;
+      right: -10px;
+      position: absolute;
+    }
   }
 
 
