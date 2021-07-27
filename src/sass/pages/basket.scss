@@ -1,26 +1,46 @@
 .basket {
-  @include container;
-  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+
+  &__container{
+    @include container;
+    margin-top: 30px;
+  }
 
   &__orders {
     background: rgb(246, 246, 248);
+    border-top: 2px solid black;
     padding: 20px;
+    flex: 1;
 
     &--product {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
 
-      &:not(:last-child){
+      &-select{
+        width: fit-content;
+        padding: 5px;
+        border-radius: 5px;
+      }
+
+      &-item{
+        display: flex;
+        margin-bottom: 10px;
+      }
+
+      &:not(:last-child) {
         border-bottom: 1px solid lightgray;
         padding-bottom: 20px;
         margin-bottom: 20px;
       }
 
 
-      &-photo{
+      &-photo {
         margin-right: 10px;
         height: auto;
-        width: 150px;
+        width: 100px;
         object-fit: contain;
       }
 
@@ -43,10 +63,125 @@
       &-size {
 
       }
+    }
+  }
 
+
+  &__checkout {
+    height: 100%;
+    width: 350px;
+    margin-left: 40px;
+
+    @include respond(mobile){
+      width: 100%;
+      margin-top: 30px;
+      margin-left: 0;
+    }
+
+
+    &-card1 {
+      padding: 20px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+      height: 100%;
+      width: 100%;
+
+
+      &--prices {
+
+        & > div {
+          @include flex;
+          margin-bottom: 10px;
+          justify-content: space-between;
+
+          & > p:last-child {
+            font-weight: bold;
+          }
+
+        }
+      }
+
+      &--button {
+        @include button-black;
+        width: 100%;
+        background: red;
+        margin-top: 20px;
+
+        @include respond(mobile){
+          position: fixed;
+          bottom: 59px;
+          right: 0;
+        }
+
+      }
+
+
+      &--flex {
+        @include flex;
+        justify-content: space-between;
+
+        & > p:last-child {
+          font-weight: bold;
+        }
+
+      }
+
+      &--promo {
+        border-top: 1px solid lightgray;
+        margin-top: 20px;
+        padding-top: 20px;
+
+        &-text {
+          text-align: right;
+          font-size: 14px;
+        }
+
+
+        &-input {
+          border: 1px solid lightgray;
+          border-radius: 5px;
+          margin-top: 10px;
+          padding-left: 15px;
+          height: 40px;
+          width: 100%;
+
+          &:focus {
+            outline: none;
+          }
+
+        }
+      }
+
+
+      &--info {
+        margin-top: 20px;
+
+        &--photo {
+          width: 30px;
+          height: 30px;
+          border: 1px solid lightgray;
+        }
+      }
+    }
+
+
+    &-card2 {
+      padding: 20px;
+      box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+      height: 100%;
+      width: 100%;
+      margin-top: 20px;
+
+
+      &--photo {
+        width: 50px;
+        height: 30px;
+        margin-right: 10px;
+      }
 
     }
 
+
   }
+
 
 }
