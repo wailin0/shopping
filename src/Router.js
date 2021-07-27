@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import ProductDetail from "./pages/ProductDetail";
 import Shop from "./pages/Shop";
 import Basket from "./pages/Basket";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const Router = () => {
     return (
@@ -11,6 +12,7 @@ const Router = () => {
             <Route path='/product/:name' component={ProductDetail} />
             <Route path='/shop' component={Shop} />
             <Route path='/basket' component={Basket} />
+            <Route component={NotFoundPage} />
         </Switch>
     )
 }
