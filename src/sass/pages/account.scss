@@ -1,0 +1,122 @@
+.account {
+  @include container;
+  margin-top: 30px;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__nav {
+    display: flex;
+    justify-content: center;
+    white-space: nowrap;
+    overflow: auto;
+
+
+    &--button {
+      @include button-white;
+      margin-left: 10px;
+      padding: 5px 20px;
+    }
+
+    &--button-active {
+      @include button-black;
+      margin-left: 10px;
+      padding: 5px 20px;
+    }
+  }
+
+  &__setting {
+    margin-top: 20px;
+    font-size: 18px;
+
+
+    &--card-form {
+      margin-top: 20px;
+      width: 500px;
+
+      @include respond(mobile){
+        width: 100%;
+      }
+
+    }
+
+    &--container {
+      padding: 0 200px;
+
+      @include respond(mobile) {
+        padding: 0;
+      }
+
+
+      &--item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 30px;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 30px;
+        flex-wrap: wrap;
+
+        & > p:first-child {
+          font-weight: bold;
+        }
+
+        & > p:last-child {
+          color: blue;
+          cursor: pointer;
+        }
+
+      }
+
+
+    }
+
+
+    &--account-input {
+      margin-bottom: 20px;
+      width: 300px;
+
+      @include respond(mobile) {
+        width: 100%;
+      }
+    }
+
+    &--title {
+      font-size: 30px;
+      border-bottom: 1px solid black;
+      padding-bottom: 10px;
+      margin-top: 20px;
+      margin-bottom: 30px;
+    }
+
+
+    &--input {
+      height: 50px;
+      width: 100%;
+      border-radius: 5px;
+      padding-left: 10px;
+      border: 1px solid gray;
+      margin-bottom: 20px;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+
+    &--cancel-button {
+      @include button-white;
+      width: 45%;
+    }
+
+    &--save-button {
+      width: 45%;
+      margin-left: 20px;
+      @include button-black;
+    }
+
+
+  }
+
+
+}
