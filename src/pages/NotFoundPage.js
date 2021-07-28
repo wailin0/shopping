@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 const NotFoundPage = () => {
     return (
         <div className='not-found-page'>
@@ -8,9 +10,11 @@ const NotFoundPage = () => {
             />
             <p>Try searching or go to out home page to continue shopping</p>
 
-            <button className='not-found-page__button'>
-                Go to Home Page
-            </button>
+            <Link to='/'>
+                <button className='not-found-page__button'>
+                    Go to Home Page
+                </button>
+            </Link>
         </div>
     )
 }

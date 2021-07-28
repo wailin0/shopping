@@ -45,28 +45,28 @@ const UserModal = () => {
                 </div>
 
                 <div className='user-modal__list'>
-                    <Link to='/history'>
+                    <Link to='/user/history'>
                         <FaHistory/>
                         <div>
                             <p>Buy It Again</p>
                             <p>reorder from in-store and store purchases</p>
                         </div>
                     </Link>
-                    <Link to='/orders'>
+                    <Link to='/user/orders'>
                         <FaJediOrder/>
                         <div>
                             <p>Orders</p>
                             <p>View & track online orders</p>
                         </div>
                     </Link>
-                    <Link to='/loved'>
+                    <Link to='/user/loved'>
                         <FaHeartbeat/>
                         <div>
                             <p>Loved</p>
                             <p>View saved products</p>
                         </div>
                     </Link>
-                    <Link to='/settings'>
+                    <Link to='/user/account'>
                         <FaUserTag/>
                         <div>
                             <p>Account Settings</p>

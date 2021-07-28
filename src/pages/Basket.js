@@ -1,4 +1,5 @@
 import {products} from "../dummy";
+import {Link} from "react-router-dom";
 
 const Basket = () => {
     return (
@@ -31,7 +32,7 @@ const Basket = () => {
                                         <option value={value}>{value}</option>
                                     )}
                                 </select>
-                                <span style={{marginLeft:20,color:'blue',cursor:'pointer'}}>
+                                <span style={{marginLeft: 20, color: 'blue', cursor: 'pointer'}}>
                                     Remove
                                 </span>
                             </div>
@@ -63,9 +64,11 @@ const Basket = () => {
                                 <p>$56.00</p>
                             </div>
 
-                            <button className='basket__checkout-card1--button'>
-                                Checkout
-                            </button>
+                            <Link to='/checkout'>
+                                <button className='basket__checkout-card1--button'>
+                                    Checkout
+                                </button>
+                            </Link>
 
                             <div className='basket__checkout-card1--promo'>
                                 <p className='basket__checkout-card1--promo-text'>View promo codes ></p>

@@ -1,6 +1,7 @@
 import {FaHeartbeat, FaStore, FaTruck} from "react-icons/fa";
 import {useContext} from "react";
 import {Context} from "../../Context";
+import {Link} from "react-router-dom";
 
 const BasketModal = () => {
 
@@ -53,9 +54,11 @@ const BasketModal = () => {
                     <h4>Subtotal (3 items)</h4>
                     <p style={{fontWeight: 'bold'}}>$45.00</p>
                 </div>
-                <button className='basket-modal__button'>
-                    View Basket & Checkout
-                </button>
+                <Link to='/basket'>
+                    <button className='basket-modal__button'>
+                        View Basket & Checkout
+                    </button>
+                </Link>
 
                 <div className='basket-modal__flex'>
                     <FaStore size={25}/>
