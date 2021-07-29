@@ -9,16 +9,16 @@ const BottomTab = () => {
 
     return (
         <div className='bottom-tab'>
-            <NavLink to='/'>
+            <NavLink to='/' activeClassName='bottom-tab__active' exact>
                 <FaHome size={17}/>
                 <p>Home</p>
             </NavLink>
-            <NavLink to='/shop'>
+            <NavLink to='/shop' activeClassName='bottom-tab__active'>
                 <FaShoppingBag size={17}/>
                 <p>Shop</p>
             </NavLink>
 
-            <NavLink to='/offer'>
+            <NavLink to='/offer' activeClassName='bottom-tab__active'>
                 <FaTag size={17}/>
                 <p>Offer</p>
             </NavLink>

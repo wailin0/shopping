@@ -46,8 +46,8 @@
       overflow-x: hidden;
 
       &-item {
+        @include flex;
         margin-bottom: 10px;
-        display: flex;
 
         & > label {
           margin-left: 10px;
@@ -103,6 +103,14 @@
     &--dialog {
       padding: 10px;
       display: flex;
+      z-index: 3000;
+      overflow: auto;
+      position: fixed;
+      width: 100%;
+      background: white;
+      left: 0;
+      right: 0;
+      top: 0;
       flex-direction: column;
       justify-content: space-between;
       height: 100%;
@@ -123,11 +131,11 @@
 
         &-reset {
           @include button-white;
-          width: 50%;
+          width: 48%;
         }
 
         &-done {
-          width: 50%;
+          width: 48%;
           @include button-black;
         }
 

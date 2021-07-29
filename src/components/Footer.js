@@ -20,7 +20,7 @@ const Footer = () => {
                     </div>
                     <div>
                         <FaPhone size={30}/>
-                        <p>+95 09 48448484</p>
+                        <p>48448484</p>
                     </div>
                     <div>
                         <FaAndroid size={30}/>

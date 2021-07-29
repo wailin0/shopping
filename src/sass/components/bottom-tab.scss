@@ -7,11 +7,16 @@
   text-align: center;
   justify-content: space-evenly;
   background: white;
+  box-shadow: 0 -1px 0 lightgray;
   width: 100%;
   padding: 8px;
 
   @include respond(mobile) {
     display: flex;
+  }
+
+  &__active {
+    color: #5252e1;
   }
 
 }

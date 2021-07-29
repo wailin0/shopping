@@ -1,9 +1,11 @@
 import {FaHeartbeat, FaHistory, FaJediOrder, FaUserCircle, FaUserTag} from "react-icons/fa";
-import {Link} from "react-router-dom";
+import {useHistory} from "react-router-dom";
 import {useContext} from "react";
 import {Context} from "../../Context";
 
 const UserModal = () => {
+
+    const history = useHistory()
 
     const {setUserModal, setSignInModal, setSignUpModal} = useContext(Context)
 
@@ -45,34 +47,46 @@ const UserModal = () => {
                 </div>
 
                 <div className='user-modal__list'>
-                    <Link to='/user/history'>
+                    <a onClick={() => {
+                        history.push('/user/history')
+                        setUserModal(false)
+                    }}>
                         <FaHistory/>
                         <div>
                             <p>Buy It Again</p>
                             <p>reorder from in-store and store purchases</p>
                         </div>
-                    </Link>
-                    <Link to='/user/orders'>
+                    </a>
+                    <a onClick={() => {
+                        history.push('/user/orders')
+                        setUserModal(false)
+                    }}>
                         <FaJediOrder/>
                         <div>
                             <p>Orders</p>
                             <p>View & track online orders</p>
                         </div>
-                    </Link>
-                    <Link to='/user/loved'>
+                    </a>
+                    <a onClick={() => {
+                        history.push('/user/loved')
+                        setUserModal(false)
+                    }}>
                         <FaHeartbeat/>
                         <div>
                             <p>Loved</p>
                             <p>View saved products</p>
                         </div>
-                    </Link>
-                    <Link to='/user/account'>
+                    </a>
+                    <a onClick={() => {
+                        history.push('/user/account')
+                        setUserModal(false)
+                    }}>
                         <FaUserTag/>
                         <div>
                             <p>Account Settings</p>
                             <p>Payments, contact info, address, password</p>
                         </div>
-                    </Link>
+                    </a>
                 </div>
             </div>
         </>
