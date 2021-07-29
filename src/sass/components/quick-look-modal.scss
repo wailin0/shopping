@@ -1,0 +1,108 @@
+.quick-look-modal {
+  position: fixed;
+  display: flex;
+  overflow: auto;
+  top: 50%;
+  border-radius: 5px;
+  left: 50%;
+  z-index: 3000;
+  padding: 20px;
+  width: 1000px;
+  background: white;
+  transform: translate(-50%, -50%);
+
+  @include respond(mobile) {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  &__backdrop {
+    background: gray;
+    opacity: .54;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    z-index: 2000;
+    right: 0
+  }
+
+  &__close {
+    cursor: pointer;
+
+
+    @include respond(mobile) {
+      display: none;
+    }
+  }
+
+
+  &__photo {
+    width: 300px;
+    height: 300px;
+  }
+
+  &__product {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+
+    &-name {
+      font-size: 18px;
+    }
+
+    &-brand {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    &-item-number {
+      margin-top: 10px;
+      color: gray;
+    }
+
+    &-detail {
+      margin-top: 20px;
+    }
+
+    &-more {
+      color: blue;
+      margin-top: 50px;
+      text-align: right;
+    }
+
+    &-price {
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    &-select {
+      padding: 10px;
+      margin-left: auto;
+      margin-right: 10px;
+      height: fit-content;
+      border-radius: 5px;
+    }
+  }
+
+
+  &__button-group {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+  }
+
+  &__add-to-basket {
+    @include button-black;
+    background: red;
+    margin-bottom: 10px;
+  }
+
+  &__add-to-loves {
+    @include flex;
+    justify-content: center;
+    @include button-white;
+  }
+
+
+}

@@ -9,6 +9,7 @@
   background: white;
   box-shadow: 0 -1px 0 lightgray;
   width: 100%;
+  color: #5d4646;
   padding: 8px;
 
   @include respond(mobile) {
@@ -16,7 +17,7 @@
   }
 
   &__active {
-    color: #5252e1;
+    color: black;
   }
 
 }

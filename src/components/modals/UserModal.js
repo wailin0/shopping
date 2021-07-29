@@ -12,11 +12,12 @@ const UserModal = () => {
     return (
         <>
             <div style={{
-                position:'fixed',
-                display:'flex',
-                right:0,
-                width:'100vw',
-                height:'100vh',
+                position: 'fixed',
+                display: 'flex',
+                right: 0,
+                background:'red',
+                width: '100vw',
+                height: '100vh',
             }}
                  onClick={() => setUserModal(false)}
             >
@@ -34,13 +35,19 @@ const UserModal = () => {
                 <div className='user-modal__button'>
                     <button
                         className='user-modal__button-signin'
-                        onClick={() => setSignInModal(true)}
+                        onClick={() => {
+                            setUserModal(false)
+                            setSignInModal(true)
+                        }}
                     >
                         Sign In
                     </button>
                     <button
                         className='user-modal__button-register'
-                        onClick={() => setSignUpModal(true)}
+                        onClick={() => {
+                            setUserModal(false)
+                            setSignUpModal(true)
+                        }}
                     >
                         Create account
                     </button>

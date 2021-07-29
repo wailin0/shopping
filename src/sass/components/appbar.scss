@@ -10,7 +10,7 @@
 
   &__logo {
     width: 150px;
-    height: 30px;
+    height: 25px;
 
     @include respond(mobile) {
       width: 100px;

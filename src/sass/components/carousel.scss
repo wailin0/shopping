@@ -11,6 +11,21 @@
     padding-left: 20px;
     text-align: center;
 
+    &--quick-look {
+      background: black;
+      cursor: pointer;
+      padding: 5px 0;
+      width: 100%;
+      right: 0;
+      bottom: 0;
+      color: white;
+      position: absolute;
+
+      @include respond(mobile) {
+        display: none;
+      }
+    }
+
     &-photo {
       width: 150px;
       height: 150px;

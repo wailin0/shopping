@@ -1,11 +1,11 @@
 import {FaHeart, FaShoppingBasket, FaUserCircle} from 'react-icons/fa'
 import {useContext} from "react";
-import UserModal from "./modals/UserModal";
-import SignInModal from "./modals/SignInModal";
-import SignUpModal from "./modals/SignUpModal";
-import {Context} from "../Context";
+import UserModal from "../modals/UserModal";
+import SignInModal from "../modals/SignInModal";
+import SignUpModal from "../modals/SignUpModal";
+import {Context} from "../../Context";
 import {useHistory} from 'react-router-dom'
-import BasketModal from "./modals/BasketModal";
+import BasketModal from "../modals/BasketModal";
 
 const AppBar = () => {
 
