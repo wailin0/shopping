@@ -15,7 +15,6 @@ const UserModal = () => {
                 position: 'fixed',
                 display: 'flex',
                 right: 0,
-                background:'red',
                 width: '100vw',
                 height: '100vh',
             }}
