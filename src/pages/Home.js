@@ -1,8 +1,16 @@
 import ProductCarousel from "../components/ProductCarousel";
-import {products} from "../dummy";
-import Ads from "../components/Ads";
+import Ads from "../components/fragments/Ads";
+import {useEffect, useState} from "react";
+import product from "../services/product";
 
 const Home = () => {
+    const [products, setProducts] = useState(null)
+
+    useEffect(() => {
+        product.getAllProducts()
+            .then(res => setProducts(res))
+    }, [])
+
     return (
         <div className='home'>
             <img

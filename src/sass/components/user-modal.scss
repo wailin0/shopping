@@ -49,6 +49,36 @@
     }
   }
 
+  &__item {
+    @include flex;
+    justify-content: space-between;
+    padding-top: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+    border-top: 1px solid lightgray;
+
+    & > div:first-child {
+      & > p:first-child {
+        font-size: 18px;
+      }
+      & > p:last-child {
+        color: gray;
+        font-size: 15px;
+      }
+    }
+
+    & > div:last-child {
+      & > p:first-child {
+        font-size: 15px;
+        text-align: right;
+        font-weight: bold;
+      }
+      & > p:last-child {
+        font-size: 15px;
+      }
+    }
+  }
+
 
   &__list {
     margin-top: 20px;

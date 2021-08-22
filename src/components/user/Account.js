@@ -1,10 +1,25 @@
-import {useState} from "react";
+import {useContext, useEffect, useState} from "react";
+import {Context} from "../../Context";
 
 const Account = () => {
     const [openNameInput, setOpenNameInput] = useState(false)
     const [openEmailInput, setOpenEmailInput] = useState(false)
-    const [openAddressInput, setOpenAddressInput] = useState(false)
+    const [openPhoneInput, setOpenPhoneInput] = useState(false)
     const [openPasswordInput, setOpenPasswordInput] = useState(false)
+
+    const {user} = useContext(Context)
+
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+
+    useEffect(() => {
+        setName(user.name)
+        setPhone(user.phone)
+        setEmail(user.email)
+    }, [user])
 
     return (
         <div className='account__setting'>
@@ -21,6 +36,8 @@ const Account = () => {
                         <input
                             className='account__setting--input'
                             placeholder='name'
+                            value={name}
+                            onChange={e => setName(e.target.value)}
                         />
                         <button className='account__setting--cancel-button'
                                 onClick={() => setOpenNameInput(false)}
@@ -38,7 +55,7 @@ const Account = () => {
                         <p onClick={() => {
                             setOpenNameInput(true)
                             setOpenEmailInput(false)
-                            setOpenAddressInput(false)
+                            setOpenPhoneInput(false)
                             setOpenPasswordInput(false)
                         }}>
                             Edit
@@ -54,6 +71,8 @@ const Account = () => {
                             className='account__setting--input'
                             placeholder='email'
                             type='email'
+                            value={email}
+                            onChange={e => setEmail(e.target.value)}
                         />
                         <button className='account__setting--cancel-button'
                                 onClick={() => setOpenEmailInput(false)}
@@ -67,11 +86,11 @@ const Account = () => {
                     :
                     <div className='account__setting--container--item'>
                         <p>Email</p>
-                        <p>wailin@mgail.com</p>
+                        <p>{email && email}</p>
                         <p onClick={() => {
                             setOpenNameInput(false)
                             setOpenEmailInput(true)
-                            setOpenAddressInput(false)
+                            setOpenPhoneInput(false)
                             setOpenPasswordInput(false)
                         }}>
                             Edit
@@ -79,15 +98,17 @@ const Account = () => {
                     </div>
                 }
 
-                {openAddressInput
+                {openPhoneInput
                     ?
                     <div className='account__setting--account-input'>
                         <input
                             className='account__setting--input'
-                            placeholder='address'
+                            placeholder='phone'
+                            value={phone}
+                            onChange={e => setPhone(e.target.value)}
                         />
                         <button className='account__setting--cancel-button'
-                                onClick={() => setOpenAddressInput(false)}
+                                onClick={() => setOpenPhoneInput(false)}
                         >
                             Cancel
                         </button>
@@ -97,12 +118,12 @@ const Account = () => {
                     </div>
                     :
                     <div className='account__setting--container--item'>
-                        <p>Address</p>
-                        <p>setreet ,tow city</p>
+                        <p>Phone</p>
+                        <p>{phone && phone}</p>
                         <p onClick={() => {
                             setOpenNameInput(false)
                             setOpenEmailInput(false)
-                            setOpenAddressInput(true)
+                            setOpenPhoneInput(true)
                             setOpenPasswordInput(false)
                         }}>
                             Edit
@@ -117,11 +138,15 @@ const Account = () => {
                             className='account__setting--input'
                             placeholder='password'
                             type='password'
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                         />
                         <input
                             className='account__setting--input'
                             placeholder='confirm password'
                             type='password'
+                            value={confirmPassword}
+                            onChange={e => setConfirmPassword(e.target.value)}
                         />
                         <button className='account__setting--cancel-button'
                                 onClick={() => setOpenPasswordInput(false)}
@@ -139,7 +164,7 @@ const Account = () => {
                         <p onClick={() => {
                             setOpenNameInput(false)
                             setOpenEmailInput(false)
-                            setOpenAddressInput(false)
+                            setOpenPhoneInput(false)
                             setOpenPasswordInput(true)
                         }}>
                             Edit

@@ -1,22 +1,12 @@
-import {Link} from "react-router-dom";
-import {products} from "../dummy";
+import {useParams} from "react-router-dom";
 import {FaHeart, FaMinus, FaPlus} from "react-icons/fa";
-import {useState} from "react";
-import ProductCarousel2 from "../components/ProductCarousel2";
+import {useEffect, useState} from "react";
 import Carousel from "react-multi-carousel";
+import productService from "../services/product";
+import SimilarProducts from "../components/ProductDetail/SimilarProducts";
+import SuggestedProducts from "../components/ProductDetail/SuggestedProducts";
+import RatingAndReview from "../components/ProductDetail/RatingAndReview";
 
-const product = {
-    "name": "fresh",
-    "brand": {
-        "name": "FORVR Mood",
-        "about": "Yves Saint Laurent reigns as one of the most influential and inspired designers in the world. From his early days in the studio of Christian Dior to his acclaimed haute couture collections of today, YSL's touch remains unmistakable. The YSL style is reflected in the realm of fashion, including accessories, jewelry, ready-to-wear, fragrance, and cosmetics."
-    },
-    "price": "34.3",
-    "photoURL": "https://www.sephora.com/productimages/sku/s2446235-main-zoom.jpg?imwidth=135&imwidth=97",
-    "about": 'Saint Laurent reigns as one of th',
-    "howToUse": "Fragrance is intensified by the warmth of your own body. Apply in the creases of your knees and elbows for a longer-lasting, stronger scent. ",
-    "ingredients": "ALCOHOL, WATER, BENZYL SALICYLATE, BENZYL ALCOHOL, HYDROXYCITRONELLAL, BUTYL METHOXYDIBENZOYLMETHANE, HEXYL CINNAMAL, LIMONENE, LINALOOL, GERANIOL, CITRONELLOL, CINNAMYL ALCOHOL, METHYL ANTHRANILATE, AMYL CINNAMAL, CITRAL, COUMARIN, BENZYL BENZOATE, CI 15985 / YELLOW 6, CI 17200 / RED 33"
-}
 
 const responsive = {
     mobile: {
@@ -31,19 +21,31 @@ const ProductDetail = () => {
     const [ingredientToggle, setIngredientToggle] = useState(false)
     const [howToUseToggle, setHowToUseToggle] = useState(false)
     const [aboutTheBrandToggle, setAboutTheBrandToggle] = useState(false)
+    const [product, setProduct] = useState(null)
+
+    const {name} = useParams()
+
+    useEffect(() => {
+        productService.getProductByName(name)
+            .then(res => {
+                setProduct(res)
+            })
+    }, [name])
+
+    if (!product) {
+        return null
+    }
 
     return (
         <div className='product-detail'>
             <div className='product-detail__info'>
                 <div className='product-detail__slider'>
                     <Carousel responsive={responsive}>
-                        {products.map(product =>
+                        {product.images.map(image =>
                             <div className='product-detail__slider-item'>
-                                <Link to={`/product/${product.name}`}>
-                                    <img src={product.photoURL}
-                                         className='product-detail__slider-photo'
-                                    />
-                                </Link>
+                                <img src={image}
+                                     className='product-detail__slider-photo'
+                                />
                             </div>
                         )}
                     </Carousel>
@@ -51,13 +53,10 @@ const ProductDetail = () => {
 
                 <div className='product-detail__detail'>
                     <div>
-                        <p className='product-detail__detail-brand'>
-                            {product.brand.name}
-                        </p>
                         <p className='product-detail__detail-name'>{product.name}</p>
+                        <p className='product-detail__detail-brand'>{product.brand.name}</p>
                         <p className='product-detail__detail-rating'>XXXXX 6.7K | 167.6k</p>
                         <p className='product-detail__detail-price'>$230.00</p>
-                        <p className='product-detail__detail-size'>Size: 3oz/09 mL </p>
                     </div>
                     <div style={{display: 'flex', alignItems: 'center'}}>
                         <button className='product-detail__add-to-basket'>
@@ -78,7 +77,7 @@ const ProductDetail = () => {
                         : <FaPlus/>
                     }
                 </div>
-                {aboutTheProductToggle && <p className='product-detail__more--text'>{product.about}</p>}
+                {aboutTheProductToggle && <p className='product-detail__more--text'>{product.description}</p>}
 
             </div>
 
@@ -106,7 +105,7 @@ const ProductDetail = () => {
                         : <FaPlus/>
                     }
                 </div>
-                {howToUseToggle && <p className='product-detail__more--text'>{product.howToUse}</p>}
+                {howToUseToggle && <p className='product-detail__more--text'>{product.how_to_use}</p>}
 
             </div>
 
@@ -120,49 +119,14 @@ const ProductDetail = () => {
                         : <FaPlus/>
                     }
                 </div>
-                {aboutTheBrandToggle && <p className='product-detail__more--text'>{product.brand.about}</p>}
+                {aboutTheBrandToggle && <p className='product-detail__more--text'>{product.brand.description}</p>}
 
             </div>
 
 
-            <ProductCarousel2 title='Similar Products' products={products}/>
-            <ProductCarousel2 title='You May Also Like' products={products}/>
-
-
-            <div className='product-detail__reviews'>
-                <h2>Ratings & Reviews (3.4K)</h2>
-
-
-                {[2, 1, 3, 5, 3].map(value =>
-                    <div className='product-detail__reviews'>
-                        <div className='product-detail__reviews--user'>
-                            <img
-                                src='https://community.sephora.com/t5/image/serverpage/image-id/1146823i5C4A931743A34FFF/image-dimensions/172x172?v=v2'
-                                className='product-detail__reviews--user-photo'
-                            />
-                            <div style={{marginLeft: 10, marginRight: 'auto'}}>
-                                <p className='product-detail__reviews--user-name'>
-                                    name
-                                </p>
-                                <p>
-                                    xxxxx
-                                </p>
-                            </div>
-                            <p>1 day ago</p>
-                        </div>
-
-                        <p className='product-detail__reviews--text'>Lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit.
-                            Ad amet architecto aspernatur assumenda at
-                            corporis dolor dolore dolorem, eum expedita explicabo fuga fugit ipsum iure laudantium
-                            possimus
-                            sint
-                            sit sunt.
-                        </p>
-                    </div>
-                )}
-
-            </div>
+            <SimilarProducts/>
+            <SuggestedProducts/>
+            <RatingAndReview/>
 
 
         </div>

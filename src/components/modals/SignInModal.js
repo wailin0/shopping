@@ -1,10 +1,47 @@
 import {FaTimes} from "react-icons/fa";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {Context} from "../../Context";
+import userService from "../../services/user";
+import storage from "../../utils/storage";
 
 const SignInModal = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState({
+        email: '',
+        password: '',
+        invalid: ''
+    })
 
-    const {setSignInModal, setSignUpModal} = useContext(Context)
+
+    const {setUser, setSignInModal, setSignUpModal} = useContext(Context)
+
+
+    const login = (e) => {
+        e.preventDefault()
+
+        setError({
+            email: !email && 'Please enter your email',
+            password: !password && 'Please enter your password'
+        })
+
+        const loginData = {
+            email,
+            password
+        }
+
+        if (email && password) {
+            userService.login(loginData)
+                .then(res => {
+                    setUser(res.user)
+                    storage.saveToken(res.token)
+                    setSignInModal(false)
+                })
+                .catch(err => {
+                    setError({invalid: 'We\'re sorry, there is an error with your email and/or password. Please try again'})
+                })
+        }
+    }
 
     return (
         <div className='signin-modal'>
@@ -15,28 +52,36 @@ const SignInModal = () => {
                     onClick={() => setSignInModal(false)}
                 />
             </div>
+
+            {error.invalid && <p className='signin-modal__error'>{error.invalid}</p>}
+
             <div>
-                <div>
+                <form onSubmit={login}>
                     <input
                         type='email'
                         placeholder='Email address*'
-                        required
                         className='signin-modal__input'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     />
+                    {error.email && <p className='signin-modal__error'>{error.email}</p>}
+
                     <div>
                         <input
                             type='password'
                             placeholder='Password*'
-                            required
                             className='signin-modal__input'
+                            value={password}
+                            onChange={e => setPassword(e.target.value)}
                         />
+                        {error.password && <p className='signin-modal__error'>{error.password}</p>}
                     </div>
                     <p className='signin-modal__forget'>Forget password?</p>
-                </div>
+                    <button className='signin-modal__signin'>
+                        Sign In
+                    </button>
+                </form>
 
-                <button className='signin-modal__signin'>
-                    Sign In
-                </button>
 
                 <h3>New to Delux Beauti?</h3>
                 <button className='signin-modal__register'

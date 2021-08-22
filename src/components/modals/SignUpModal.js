@@ -1,8 +1,56 @@
 import {FaTimes} from "react-icons/fa";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {Context} from "../../Context";
+import userService from "../../services/user";
+import storage from "../../utils/storage";
 
 const SignUpModal = () => {
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phone, setPhone] = useState('')
+    const [password, setPassword] = useState('')
+    const [confirmPassword, setConfirmPassword] = useState('')
+    const [error, setError] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        password: '',
+        confirmPassword: ''
+    })
+    const {setUser} = useContext(Context)
+
+    const handleRegister = (e) => {
+        e.preventDefault()
+
+        setError({
+            name: !name && 'Name required. Please enter your name',
+            email: !email && 'Please enter your email',
+            password: !password && 'Please enter a password',
+            confirmPassword: !confirmPassword ? 'Please confirm your password' : password !== confirmPassword && 'Password must be the same as above'
+        })
+
+        const registerData = {
+            name,
+            email,
+            phone,
+            password,
+            password_confirmation: confirmPassword
+        }
+
+        if (name && email && password && confirmPassword && password === confirmPassword) {
+            userService.register(registerData)
+                .then(res => {
+                    setUser(res.user)
+                    storage.saveToken(res.token)
+                    setSignUpModal(false)
+                })
+                .catch(err => {
+                    if (err.response.data.errors.email) {
+                        setError({email: 'An account already exists for the email address you\'ve entered'})
+                    }
+                })
+        }
+    }
 
     const {setSignInModal, setSignUpModal} = useContext(Context)
 
@@ -17,40 +65,58 @@ const SignUpModal = () => {
                 />
             </div>
             <div>
-                <div>
+                <form onSubmit={handleRegister}>
                     <input
                         placeholder='Your name*'
-                        required
                         className='signin-modal__input'
+                        value={name}
+                        onChange={e => setName(e.target.value)}
                     />
+                    {error.name && <p className='signin-modal__error'>{error.name}</p>}
+
                     <input
                         type='email'
                         placeholder='Email address*'
-                        required
                         className='signin-modal__input'
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                     />
+                    {error.email && <p className='signin-modal__error'>{error.email}</p>}
+
                     <input
                         type='phone'
                         placeholder='Phone number (optional)'
                         className='signin-modal__input'
+                        value={phone}
+                        onChange={e => setPhone(e.target.value)}
                     />
+                    {error.phone && <p className='signin-modal__error'>{error.phone}</p>}
+
+
                     <input
                         type='password'
                         placeholder='Password*'
-                        required
                         className='signin-modal__input'
+                        value={password}
+                        onChange={e => setPassword(e.target.value)}
                     />
+                    {error.password && <p className='signin-modal__error'>{error.password}</p>}
+
                     <input
                         type='password'
                         placeholder='Confirm password*'
-                        required
                         className='signin-modal__input'
+                        value={confirmPassword}
+                        onChange={e => setConfirmPassword(e.target.value)}
                     />
-                </div>
+                    {error.confirmPassword && <p className='signin-modal__error'>{error.confirmPassword}</p>}
 
-                <button className='signin-modal__signin'>
-                    Join In
-                </button>
+                    <button
+                        className='signin-modal__signin'
+                    >
+                        Join Now
+                    </button>
+                </form>
 
                 <h3>Already have an account?</h3>
                 <button className='signin-modal__register'

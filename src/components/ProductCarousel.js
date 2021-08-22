@@ -1,4 +1,4 @@
-import {Link, useHistory} from "react-router-dom";
+import {Link} from "react-router-dom";
 import Carousel from "react-multi-carousel";
 import {responsive} from "../config/styles";
 import {useState} from "react";
@@ -10,10 +10,13 @@ const ProductCarousel = ({title, products}) => {
         index: null
     })
     const [quickLookModal, setQuickLookModal] = useState({
-        index: null
+        index: null,
+        productId: null
     })
 
-    const history = useHistory()
+    if (!products) {
+        return null
+    }
 
     return (
         <div style={{marginTop: 40}}>
@@ -36,22 +39,22 @@ const ProductCarousel = ({title, products}) => {
                             {(showQuickLook.index === index) &&
                             <button
                                 className='carousel__product--quick-look'
-                                onClick={() => setQuickLookModal({index})}
+                                onClick={() => setQuickLookModal({index, productId: product.id})}
                             >
                                 QUICK LOOK
                             </button>
                             }
                         </div>
                         <Link to={`/product/${product.name}`}>
-                            <p className='carousel__product-brand'>{product.brand}</p>
                             <p className='carousel__product-name'>{product.name}</p>
+                            <p class Name='carousel__product-brand'>{product.brand.name}</p>
                         </Link>
                     </div>
                 )}
             </Carousel>
 
 
-            {quickLookModal.index!==null && <QuickLookModal setQuickLookModal={setQuickLookModal}/>}
+            {quickLookModal.index !== null && <QuickLookModal setQuickLookModal={setQuickLookModal} productId={quickLookModal.productId}/>}
         </div>
     )
 }

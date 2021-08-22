@@ -1,60 +1,104 @@
-import {FaHeartbeat, FaHistory, FaJediOrder, FaUserCircle, FaUserTag} from "react-icons/fa";
+import {FaHistory, FaRegAddressCard, FaRegHeart, FaRegUserCircle, FaUserCircle} from "react-icons/fa";
+import {GoPackage} from 'react-icons/go'
 import {useHistory} from "react-router-dom";
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Context} from "../../Context";
+import userService from "../../services/user";
+import storage from "../../utils/storage";
 
 const UserModal = () => {
 
     const history = useHistory()
+    const [time, setTime] = useState('')
 
-    const {setUserModal, setSignInModal, setSignUpModal} = useContext(Context)
+    const {user, setUser, setUserModal, setSignInModal, setSignUpModal} = useContext(Context)
+
+
+    useEffect(() => {
+        const today = new Date()
+        const currentHour = today.getHours()
+
+        if (currentHour < 12) {
+            setTime('Good morning')
+        } else if (currentHour < 18) {
+            setTime('Good afternoon')
+        } else {
+            setTime('Good evening')
+        }
+    }, [])
+
+    const logout = () => {
+        userService.logout()
+            .then(() => {
+                storage.clearToken()
+                setUser(null)
+                setUserModal(false)
+                history.push('/')
+            })
+    }
 
     return (
         <>
-            <div style={{
-                position: 'fixed',
-                display: 'flex',
-                right: 0,
-                width: '100vw',
-                height: '100vh',
-            }}
+            <div className='modal__backdrop'
                  onClick={() => setUserModal(false)}
             >
 
             </div>
             <div className='user-modal'>
                 <div className='user-modal__user'>
-                    <FaUserCircle size={40}/>
+                    {user
+                        ? <FaUserCircle size={40}/>
+                        : <FaRegUserCircle size={40}/>
+                    }
                     <div>
-                        <h4>Good night</h4>
-                        <p>Sign in for more personalized experience</p>
+                        <h4>{time}{user && `, ${user.name}`}</h4>
+                        <p>{!user && 'Sign in for more personalized experience'}</p>
                     </div>
                 </div>
 
-                <div className='user-modal__button'>
-                    <button
-                        className='user-modal__button-signin'
+                {user
+                    ?
+                    <a
+                        className='user-modal__item'
                         onClick={() => {
+                            history.push('/rewards')
                             setUserModal(false)
-                            setSignInModal(true)
-                        }}
-                    >
-                        Sign In
-                    </button>
-                    <button
-                        className='user-modal__button-register'
-                        onClick={() => {
-                            setUserModal(false)
-                            setSignUpModal(true)
-                        }}
-                    >
-                        Create account
-                    </button>
-                </div>
+                        }}>
+                        <div>
+                            <p>Rewards</p>
+                            <p>Redeem items, samples, more</p>
+                        </div>
+                        <div>
+                            <p>0</p>
+                            <p>Points</p>
+                        </div>
+                    </a>
+                    :
+                    <div className='user-modal__button'>
+                        <button
+                            className='user-modal__button-signin'
+                            onClick={() => {
+                                setUserModal(false)
+                                setSignInModal(true)
+                            }}
+                        >
+                            Sign In
+                        </button>
+                        <button
+                            className='user-modal__button-register'
+                            onClick={() => {
+                                setUserModal(false)
+                                setSignUpModal(true)
+                            }}
+                        >
+                            Create account
+                        </button>
+                    </div>
+                }
 
                 <div className='user-modal__list'>
                     <a onClick={() => {
-                        history.push('/user/history')
+                        history.push('/purchase-history')
                         setUserModal(false)
                     }}>
                         <FaHistory/>
@@ -67,17 +111,17 @@ const UserModal = () => {
                         history.push('/user/orders')
                         setUserModal(false)
                     }}>
-                        <FaJediOrder/>
+                        <GoPackage/>
                         <div>
                             <p>Orders</p>
                             <p>View & track online orders</p>
                         </div>
                     </a>
                     <a onClick={() => {
-                        history.push('/user/loved')
+                        history.push('/loved')
                         setUserModal(false)
                     }}>
-                        <FaHeartbeat/>
+                        <FaRegHeart/>
                         <div>
                             <p>Loved</p>
                             <p>View saved products</p>
@@ -87,12 +131,17 @@ const UserModal = () => {
                         history.push('/user/account')
                         setUserModal(false)
                     }}>
-                        <FaUserTag/>
+                        <FaRegAddressCard/>
                         <div>
                             <p>Account Settings</p>
                             <p>Payments, contact info, address, password</p>
                         </div>
                     </a>
+                    {user &&
+                        <a onClick={() => logout()}>
+                            <p>Logout</p>
+                        </a>
+                    }
                 </div>
             </div>
         </>

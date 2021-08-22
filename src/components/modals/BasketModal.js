@@ -1,4 +1,4 @@
-import {FaHeartbeat, FaStore, FaTruck} from "react-icons/fa";
+import {FaRegHeart, FaStore, FaTruck} from "react-icons/fa";
 import {useContext} from "react";
 import {Context} from "../../Context";
 import {Link} from "react-router-dom";
@@ -11,8 +11,8 @@ const BasketModal = () => {
         <>
             <div style={{
                 position: 'fixed',
-                display: 'flex',
                 right: 0,
+                top:0,
                 width: '100vw',
                 height: '100vh',
             }}
@@ -23,7 +23,7 @@ const BasketModal = () => {
             <div className='basket-modal'>
                 <div className='basket-modal__title'>
                     <h4>Basket</h4>
-                    <p style={{color: 'blue'}}>View all</p>
+                    <Link to='/basket' style={{color: 'blue'}}>View all</Link>
                 </div>
 
                 {[1, 2, 3].map(() =>
@@ -45,7 +45,7 @@ const BasketModal = () => {
                             justifyContent: 'space-between'
                         }}>
                             <p className='basket-modal__product-price'>$50.55</p>
-                            <FaHeartbeat size={20}/>
+                            <FaRegHeart size={20}/>
                         </div>
                     </div>
                 )}

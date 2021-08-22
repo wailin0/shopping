@@ -11,8 +11,6 @@ const categories = [
     "Bath & Body",
     "Mini & Size",
     "Gifts",
-    "Clean Beauty",
-    "Beauty Under $20",
     "Sale & Offers"
 ]
 

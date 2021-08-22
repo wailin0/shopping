@@ -53,11 +53,6 @@
       font-size: 25px;
     }
 
-    &-size {
-      font-size: 20px;
-    }
-
-
   }
 
 
@@ -85,13 +80,17 @@
   }
 
   &__reviews {
-    margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid lightgray;
+
+    &--container {
+      margin-top: 20px;
+    }
 
     &--user {
       display: flex;
       align-items: center;
-      margin-top: 20px;
       justify-content: space-between;
 
       &-photo {
@@ -130,7 +129,7 @@
       width: 100%;
       right: 0;
       left: 0;
-      bottom: 58px;
+      bottom: 62px;
     }
   }
 
