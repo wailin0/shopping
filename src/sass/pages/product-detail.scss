@@ -10,7 +10,7 @@
 
 
   &__slider {
-    width: 600px;
+    width: 500px;
     height: auto;
 
     @include respond(mobile) {
@@ -43,6 +43,15 @@
       font-size: 17px;
     }
 
+    &-rating {
+      display: flex;
+      align-items: center;
+
+      & > p {
+        margin-left: 20px;
+      }
+    }
+
     &-name {
       font-size: 25px;
     }
@@ -50,7 +59,7 @@
     &-price {
       margin-top: 20px;
       font-weight: bold;
-      font-size: 25px;
+      font-size: 22px;
     }
 
   }

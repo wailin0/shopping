@@ -1,3 +1,4 @@
+import {FaStar} from "react-icons/fa";
 
 const RatingAndReview = () => {
     return (
@@ -18,7 +19,7 @@ const RatingAndReview = () => {
                                 name
                             </p>
                             <p>
-                                xxxxx
+                                <FaStar size={13}/><FaStar size={13}/><FaStar size={13}/><FaStar size={13}/><FaStar size={13}/>
                             </p>
                         </div>
                         <p>1 day ago</p>

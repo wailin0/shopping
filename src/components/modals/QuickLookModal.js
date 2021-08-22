@@ -1,15 +1,16 @@
 import {FaHeart, FaTimes} from "react-icons/fa";
 import {Link} from "react-router-dom";
-import productService from "../../services/product";
 import {useEffect, useState} from "react";
+import {dummyProducts} from "../../dummyData";
 
 
 const QuickLookModal = ({setQuickLookModal, productId}) => {
     const [product, setProduct] = useState(null)
 
     useEffect(() => {
-        productService.getProductById(productId)
-            .then(res => setProduct(res))
+        // productService.getProductById(productId)
+        //     .then(res => setProduct(res))
+          setProduct(dummyProducts.find(product => product.id===productId))
     }, [])
 
     console.log(product)

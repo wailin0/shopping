@@ -3,6 +3,7 @@ import {useContext, useState} from "react";
 import {Context} from "../../Context";
 import userService from "../../services/user";
 import storage from "../../utils/storage";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const SignInModal = () => {
     const [email, setEmail] = useState('')
@@ -12,12 +13,14 @@ const SignInModal = () => {
         password: '',
         invalid: ''
     })
+    const [loading, setLoading] = useState(false)
 
 
     const {setUser, setSignInModal, setSignUpModal} = useContext(Context)
 
 
     const login = (e) => {
+        setLoading(true)
         e.preventDefault()
 
         setError({
@@ -33,12 +36,14 @@ const SignInModal = () => {
         if (email && password) {
             userService.login(loginData)
                 .then(res => {
+                    setLoading(false)
                     setUser(res.user)
                     storage.saveToken(res.token)
                     setSignInModal(false)
                 })
                 .catch(err => {
                     setError({invalid: 'We\'re sorry, there is an error with your email and/or password. Please try again'})
+                    setLoading(false)
                 })
         }
     }
@@ -78,7 +83,7 @@ const SignInModal = () => {
                     </div>
                     <p className='signin-modal__forget'>Forget password?</p>
                     <button className='signin-modal__signin'>
-                        Sign In
+                        {loading ?  <CircularProgress color="white" size={12} /> : 'Sign In'}
                     </button>
                 </form>
 

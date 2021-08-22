@@ -1,14 +1,15 @@
-import {products} from "../dummy";
 import Slider from "@material-ui/core/Slider";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FaFilter} from 'react-icons/fa'
 import {Link} from "react-router-dom";
 import FilterModal from "../components/modals/FilterModal";
+import {dummyProducts} from "../dummyData";
+import Loading from "../components/fragments/Loading";
 
 const filters = [
     {
         "name": "Colors",
-        "list": ["color","Silver", "Red", "Pink", "Coral", "Blue", "Green", "Gold"]
+        "list": ["color", "Silver", "Red", "Pink", "Coral", "Blue", "Green", "Gold"]
     },
     {
         "name": "Brands",
@@ -23,10 +24,19 @@ const filters = [
 const Shop = () => {
     const [value, setValue] = useState([0, 100]);
     const [mobileFilter, setMobileFilter] = useState(false)
+    const [products, setProducts] = useState(null)
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
     };
+
+    useEffect(() => {
+        setProducts(dummyProducts)
+    }, [])
+
+    if (!products) {
+        return <Loading />
+    }
 
     return (
         <>
@@ -97,12 +107,12 @@ const Shop = () => {
                     {products.map(product =>
                         <Link to={`/product/${product.name}`} className='shop__product-grid--item'>
                             <div className='shop__product-grid--item-photo'>
-                                <img src={product.photoURL}
+                                <img src={product.image_url}
                                      style={{width: '100%', objectFit: 'contain', height: '100%'}}
                                 />
                             </div>
                             <p className='shop__product-grid--item-name'>{product.name}</p>
-                            <p className='shop__product-grid--item-brand'>{product.brand}</p>
+                            <p className='shop__product-grid--item-brand'>{product.brand.name}</p>
                             <p className='shop__product-grid--item-price'>${product.price}</p>
                             <p className='shop__product-grid--item-rating'>XXXXX 14.4K</p>
                         </Link>

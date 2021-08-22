@@ -3,6 +3,7 @@ import {useContext, useState} from "react";
 import {Context} from "../../Context";
 import userService from "../../services/user";
 import storage from "../../utils/storage";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 const SignUpModal = () => {
     const [name, setName] = useState('')
@@ -17,9 +18,12 @@ const SignUpModal = () => {
         password: '',
         confirmPassword: ''
     })
+    const [loading,setLoading] = useState(false)
+
     const {setUser} = useContext(Context)
 
     const handleRegister = (e) => {
+        setLoading(true)
         e.preventDefault()
 
         setError({
@@ -40,14 +44,16 @@ const SignUpModal = () => {
         if (name && email && password && confirmPassword && password === confirmPassword) {
             userService.register(registerData)
                 .then(res => {
+                    setLoading(false)
                     setUser(res.user)
                     storage.saveToken(res.token)
                     setSignUpModal(false)
                 })
                 .catch(err => {
-                    if (err.response.data.errors.email) {
+                    if (err.response && err.response.data.errors.email) {
                         setError({email: 'An account already exists for the email address you\'ve entered'})
                     }
+                    setLoading(false)
                 })
         }
     }
@@ -114,7 +120,7 @@ const SignUpModal = () => {
                     <button
                         className='signin-modal__signin'
                     >
-                        Join Now
+                        {loading ?  <CircularProgress color="white" size={12} /> : 'Join Now'}
                     </button>
                 </form>
 

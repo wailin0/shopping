@@ -1,11 +1,12 @@
-import {useParams} from "react-router-dom";
-import {FaHeart, FaMinus, FaPlus} from "react-icons/fa";
+import {useHistory, useParams} from "react-router-dom";
+import {FaHeart, FaMinus, FaPlus, FaStar} from "react-icons/fa";
 import {useEffect, useState} from "react";
 import Carousel from "react-multi-carousel";
-import productService from "../services/product";
 import SimilarProducts from "../components/ProductDetail/SimilarProducts";
 import SuggestedProducts from "../components/ProductDetail/SuggestedProducts";
 import RatingAndReview from "../components/ProductDetail/RatingAndReview";
+import {dummyProducts} from "../dummyData";
+import Loading from "../components/fragments/Loading";
 
 
 const responsive = {
@@ -24,16 +25,18 @@ const ProductDetail = () => {
     const [product, setProduct] = useState(null)
 
     const {name} = useParams()
+    const history = useHistory()
 
     useEffect(() => {
-        productService.getProductByName(name)
-            .then(res => {
-                setProduct(res)
-            })
+        // productService.getProductByName(name)
+        //     .then(res => {
+        //         setProduct(res)
+        //     })
+        setProduct(dummyProducts.find(product => product.name === name))
     }, [name])
 
     if (!product) {
-        return null
+        return <Loading/>
     }
 
     return (
@@ -43,7 +46,7 @@ const ProductDetail = () => {
                     <Carousel responsive={responsive}>
                         {product.images.map(image =>
                             <div className='product-detail__slider-item'>
-                                <img src={image}
+                                <img src={image.image_url}
                                      className='product-detail__slider-photo'
                                 />
                             </div>
@@ -55,7 +58,10 @@ const ProductDetail = () => {
                     <div>
                         <p className='product-detail__detail-name'>{product.name}</p>
                         <p className='product-detail__detail-brand'>{product.brand.name}</p>
-                        <p className='product-detail__detail-rating'>XXXXX 6.7K | 167.6k</p>
+                        <p className='product-detail__detail-rating'>
+                            <FaStar/><FaStar/><FaStar/><FaStar/><FaStar/>
+                            <p>4.5 | 167.6k</p>
+                        </p>
                         <p className='product-detail__detail-price'>$230.00</p>
                     </div>
                     <div style={{display: 'flex', alignItems: 'center'}}>
