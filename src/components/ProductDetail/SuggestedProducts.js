@@ -1,4 +1,4 @@
-import ProductCarousel2 from "../ProductCarousel2";
+import ProductCarousel2 from "../fragments/ProductCarousel2";
 import {useEffect, useState} from "react";
 import {dummyProducts} from "../../dummyData";
 

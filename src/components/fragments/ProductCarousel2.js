@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import Carousel from "react-multi-carousel";
-import {responsive} from "../config/styles";
+import {responsive} from "../../config/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import {FaStar} from "react-icons/fa";
 

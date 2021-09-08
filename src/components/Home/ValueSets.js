@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import ProductCarousel from "../ProductCarousel";
+import ProductCarousel from "../fragments/ProductCarousel";
 import {dummyProducts} from "../../dummyData";
 
 const ValueSets = () => {
